@@ -1,7 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
+import {useEffect} from 'react';
 
 function App() {
+  useEffect(() =>
+      fetch('/api/authentication'), [])
   return (
     <div className="App">
       <header className="App-header">
