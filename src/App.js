@@ -1,9 +1,12 @@
-import './App.css';
+import './App.scss';
 import {useEffect} from 'react';
 import { BrowserRouter, Route,Switch } from "react-router-dom"
-import login from './pages/login/login';
-import register from './pages/register/register';
-import routes  from './router/index'
+import login from './pages/login';
+import register from './pages/register';
+import page404 from './pages/page404';
+import home from './pages/home';
+import news from './pages/news';
+// import routes  from './router/index'
 
 function App() {
   useEffect(() =>
@@ -29,6 +32,9 @@ function App() {
 
           <Route exact path="/" component={login} />
           <Route path="/register" component={register}/>
+          <Route path="/404" component={page404}/>
+          <Route path="/home" component={home}/>
+          <Route path="/news" component={news}/>
     </div>
   );
 }

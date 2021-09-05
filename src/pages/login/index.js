@@ -1,15 +1,14 @@
-import './register.scss';
+import './login.scss';
 import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import verify from './verify.js';
 // import alert from '../../common/components/alert/alert'
 import eye from '../../assets/icon_eye.png';
 
-const Register = () => {
+const Index = () => {
   const [value, setValue] = useState({
     account: '',
     password: '',
-    repassword: '',
   });
   const [error, setError] = useState({});
   const [showText, setShowText] = useState(false);
@@ -28,11 +27,10 @@ const Register = () => {
   };
 
   const submitFormData = () => {
-    console.log(7777777888888);
+     alert('API送出7788');
   }
 
   useEffect(()=>{
-
     //無搜集到 error 訊息且 正在送出訊息
     if(Object.keys(error).length === 0 && isSubmit){
       submitFormData()
@@ -40,10 +38,9 @@ const Register = () => {
   },[error])
 
   return (
-      <div className="registerPage">
-
-        <div className="registerForm">
-          <h1>註冊</h1>
+      <div className="loginPage">
+        <div className="loginForm">
+          <h1>登入</h1>
 
           {/*帳號*/}
           <div className="formItem">
@@ -83,33 +80,9 @@ const Register = () => {
           <p className="verifyText">
             {error?.password && (<span>{error.password}</span>)}
           </p>
-
-          {/*確認密碼*/}
-          <div className="formItem">
-            <div className="formItem_title">
-              確認密碼
-            </div>
-            <input className={`formItem_input ${error?.repassword ?
-                'formItem_input-error' :
-                ''}`}
-                   type={showText ? 'text' : 'password'} name="repassword"
-                   onChange={handleOnChange}>
-            </input>
-            <div className="formItem_eye" onClick={() => {
-              setShowText(!showText);
-            }}>
-              <img src={eye}></img>
-            </div>
-
-          </div>
-          <p className="verifyText">
-            {error?.repassword && (<span>{error.repassword}</span>)}
-          </p>
-
-
-          <Link to="/"><span>登入</span></Link>
+          <Link to="/register"><span>註冊</span></Link>
           <div>
-            <button onClick={handleSubmit}>註冊</button>
+            <button className="formButton" onClick={handleSubmit}>登入</button>
           </div>
         </div>
 
@@ -118,4 +91,4 @@ const Register = () => {
 
 };
 
-export default Register;
+export default Index;
