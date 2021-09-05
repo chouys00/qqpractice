@@ -11,8 +11,9 @@ const Register = () => {
     password: '',
     repassword: '',
   });
-  const [error, setError] = useState();
+  const [error, setError] = useState({});
   const [showText, setShowText] = useState(false);
+  const [isSubmit,setIsSubmit] = useState(false)
 
   const handleOnChange = (e) => {
     setValue({
@@ -23,7 +24,20 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     setError(verify(value));
+    setIsSubmit(true)
   };
+
+  const submitFormData = () => {
+    console.log(7777777888888);
+  }
+
+  useEffect(()=>{
+
+    //無搜集到 error 訊息且 正在送出訊息
+    if(Object.keys(error).length === 0 && isSubmit){
+      submitFormData()
+    }
+  },[error])
 
   return (
       <div className="registerPage">

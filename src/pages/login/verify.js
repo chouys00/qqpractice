@@ -1,8 +1,6 @@
 const verify = (value) => {
   let errorObj = {};
 
-  console.log(1111,value);
-
   if (!value.account) {
     errorObj.account = '請輸入帳號';
   }
