@@ -13,20 +13,6 @@ const routes = [
     path: '/register',
     component: () => import('../pages/register/register'),
   },
-  // {
-  //   path: "/nested",
-  //   component: React.lazy(() => import("../components/Nested")),
-  //   routes: [
-  //     {
-  //       path: "/cmp-1",
-  //       component: React.lazy(() => import("../components/CmpOne"))
-  //     },
-  //     {
-  //       path: "/cmp-2",
-  //       component: React.lazy(() => import("../components/CmpTwo"))
-  //     }
-  //   ]
-  // }
 ];
 
 export default routes;
