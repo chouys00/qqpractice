@@ -8,7 +8,7 @@ const Register = () => {
   };
   return (
       <div className='registerPage'>
-        <div className='loginForm'>
+        <div className='registerForm'>
           <h1>註冊</h1>
           <div className='formItem'>
             <div className='formItem_title'>
