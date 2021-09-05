@@ -28,6 +28,8 @@ const Login = () => {
       <div className="loginPage">
         <div className="loginForm">
           <h1>登入</h1>
+
+          {/*帳號*/}
           <div className="formItem">
             <div className="formItem_title">
               帳號
@@ -44,6 +46,7 @@ const Login = () => {
             {error?.account && (<span>{error.account}</span>)}
           </p>
 
+          {/*密碼*/}
           <div className="formItem">
             <div className="formItem_title">
               密碼

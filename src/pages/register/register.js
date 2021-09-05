@@ -9,7 +9,7 @@ const Register = () => {
   const [value, setValue] = useState({
     account: '',
     password: '',
-    repassword:'',
+    repassword: '',
   });
   const [error, setError] = useState();
   const [showText, setShowText] = useState(false);
@@ -27,8 +27,11 @@ const Register = () => {
 
   return (
       <div className="registerPage">
+
         <div className="registerForm">
           <h1>註冊</h1>
+
+          {/*帳號*/}
           <div className="formItem">
             <div className="formItem_title">
               帳號
@@ -45,7 +48,7 @@ const Register = () => {
             {error?.account && (<span>{error.account}</span>)}
           </p>
 
-
+          {/*密碼*/}
           <div className="formItem">
             <div className="formItem_title">
               密碼
@@ -67,6 +70,7 @@ const Register = () => {
             {error?.password && (<span>{error.password}</span>)}
           </p>
 
+          {/*確認密碼*/}
           <div className="formItem">
             <div className="formItem_title">
               確認密碼
@@ -91,7 +95,7 @@ const Register = () => {
 
           <Link to="/"><span>登入</span></Link>
           <div>
-            <button onClick={handleSubmit}>登入</button>
+            <button onClick={handleSubmit}>註冊</button>
           </div>
         </div>
 

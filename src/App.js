@@ -1,8 +1,9 @@
 import './App.css';
 import {useEffect} from 'react';
-import { BrowserRouter, Route } from "react-router-dom"
+import { BrowserRouter, Route,Switch } from "react-router-dom"
 import login from './pages/login/login';
 import register from './pages/register/register';
+import routes  from './router/index'
 
 function App() {
   useEffect(() =>
@@ -10,18 +11,24 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
+      {/*<Switch>*/}
+      {/*  {*/}
+      {/*    routes.map((route,index)=>{*/}
+      {/*      return(*/}
+      {/*          <Route path={route.path} key={index}  component={route.component}></Route>*/}
+      {/*          */}
+      {/*          <Route path={route.path} key={index}  render={(props) => (*/}
+      {/*                <route.component {...props} routes={route.routes} />*/}
+      {/*          )}>*/}
+      {/*          </Route>*/}
+      {/*      )*/}
+      {/*    })*/}
+      {/*  }*/}
+      {/*</Switch>*/}
+
+
           <Route exact path="/" component={login} />
           <Route path="/register" component={register}/>
-      </BrowserRouter>
-      {/*<header className="App-header">*/}
-      {/*  <section className={"App-header"}>*/}
-      {/*    <Route path="/" exact component={ login } />*/}
-      {/*    <Route path="/works" exact component={ workPage} />*/}
-      {/*    <Route path="/workPageDetail" exact component={ workPageDetail} />*/}
-      {/*     <Route path="/works/:id" exact component={ workPageDetail} /> */}
-      {/*  </section>*/}
-      {/*</header>*/}
     </div>
   );
 }
