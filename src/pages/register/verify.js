@@ -19,10 +19,10 @@ const verify = (value) => {
   if (!value.password) {
     errorObj.password = '請輸入密碼';
   }
-  // const passwordRules = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,10}/
-  // if(value.password && !email.test(value.account)){
-  //   errorObj.account = '密碼格式錯誤';
-  // }
+  const passwordRules = /^[A-z]\d{2,6}[A-z]$/
+  if(value.password && !passwordRules.test(value.password)){
+    errorObj.password = '密碼格式錯誤';
+  }
 
 
   /*密碼確認

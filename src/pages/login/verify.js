@@ -11,10 +11,6 @@ const verify = (value) => {
 
   return errorObj;
 
-  // required: (val) => {
-  //   if(val !== null && val !== undefined && val !== '') return '欄位不可為空'
-  // },
-  // // account:
 };
 
 export default verify;

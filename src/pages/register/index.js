@@ -1,6 +1,6 @@
 import './register.scss';
 import React, {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import verify from './verify.js';
 // import alert from '../../common/components/alert/alert'
 import eye from '../../assets/icon_eye.png';
@@ -13,7 +13,8 @@ const Index = () => {
   });
   const [error, setError] = useState({});
   const [showText, setShowText] = useState(false);
-  const [isSubmit,setIsSubmit] = useState(false)
+  const [isSubmit, setIsSubmit] = useState(false);
+  const history = useHistory();
 
   const handleOnChange = (e) => {
     setValue({
@@ -24,20 +25,37 @@ const Index = () => {
 
   const handleSubmit = (e) => {
     setError(verify(value));
-    setIsSubmit(true)
+    setIsSubmit(true);
   };
 
   const submitFormData = () => {
-    alert('API送出7788');
-  }
+    fetch('/api/register', {
+      method: 'post',
+      body: JSON.stringify({username: value.account, password: value.password}),
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+    }).then((res) => {
+      return res.json();
+    }).then((res) => {
+      if (res.success) {
+        alert(res.message);
+        history.push('/home');
+      } else {
+        alert(res.message);
+      }
+    }).catch((error) => {
+      console.log(error);
+    });
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
 
     //無搜集到 error 訊息且 正在送出訊息
-    if(Object.keys(error).length === 0 && isSubmit){
-      submitFormData()
+    if (Object.keys(error).length === 0 && isSubmit) {
+      submitFormData();
     }
-  },[error])
+  }, [error]);
 
   return (
       <div className="registerPage">
@@ -54,6 +72,7 @@ const Index = () => {
             <input className={`formItem_input ${error?.account ?
                 'formItem_input-error' :
                 ''}`} type="text" name="account"
+                   placeholder={'必須是信箱'}
                    onChange={handleOnChange}>
             </input>
 
@@ -70,6 +89,7 @@ const Index = () => {
             <input className={`formItem_input ${error?.password ?
                 'formItem_input-error' :
                 ''}`}
+                   placeholder={'4-8字元；首尾必須是英文；中間必須是數字'}
                    type={showText ? 'text' : 'password'} name="password"
                    onChange={handleOnChange}>
             </input>
@@ -92,6 +112,7 @@ const Index = () => {
             <input className={`formItem_input ${error?.repassword ?
                 'formItem_input-error' :
                 ''}`}
+                   placeholder={'4-8字元；首尾必須是英文；中間必須是數字'}
                    type={showText ? 'text' : 'password'} name="repassword"
                    onChange={handleOnChange}>
             </input>
@@ -107,7 +128,7 @@ const Index = () => {
           </p>
 
 
-          <Link to="/"><span>登入</span></Link>
+          <Link to="/login"><span>登入</span></Link>
           <div>
             <button className="formButton" onClick={handleSubmit}>註冊</button>
           </div>

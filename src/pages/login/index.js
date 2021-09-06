@@ -1,8 +1,9 @@
 import './login.scss';
 import React, {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import verify from './verify.js';
 // import alert from '../../common/components/alert/alert'
+import {useHistory} from 'react-router-dom';
 import eye from '../../assets/icon_eye.png';
 
 const Index = () => {
@@ -12,7 +13,8 @@ const Index = () => {
   });
   const [error, setError] = useState({});
   const [showText, setShowText] = useState(false);
-  const [isSubmit,setIsSubmit] = useState(false)
+  const [isSubmit, setIsSubmit] = useState(false);
+  const history = useHistory();
 
   const handleOnChange = (e) => {
     setValue({
@@ -23,19 +25,37 @@ const Index = () => {
 
   const handleSubmit = (e) => {
     setError(verify(value));
-    setIsSubmit(true)
+    setIsSubmit(true);
   };
 
   const submitFormData = () => {
-     alert('API送出7788');
-  }
 
-  useEffect(()=>{
+    fetch('/api/login', {
+      method: 'post',
+      body: JSON.stringify({username: value.account, password: value.password}),
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+    })
+        .then(res => res.json())
+        .then((res) => {
+          if (res.success) {
+            history.push('/home');
+            alert(res.message);
+          } else {
+            alert(res.message);
+          }
+        }).catch((error) => {
+      console.log(error);
+    });
+  };
+
+  useEffect(() => {
     //無搜集到 error 訊息且 正在送出訊息
-    if(Object.keys(error).length === 0 && isSubmit){
-      submitFormData()
+    if (Object.keys(error).length === 0 && isSubmit) {
+      submitFormData();
     }
-  },[error])
+  }, [error]);
 
   return (
       <div className="loginPage">

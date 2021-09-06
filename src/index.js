@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {setupMSW} from './browser';
+import {setupMSW} from './mocks/browser';
 
 setupMSW().then(() =>
   ReactDOM.render(
