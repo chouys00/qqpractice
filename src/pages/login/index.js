@@ -40,8 +40,9 @@ const Index = () => {
         .then(res => res.json())
         .then((res) => {
           if (res.success) {
-            history.push('/home');
+            sessionStorage.setItem('token', res.token);
             alert(res.message);
+            history.push('/home');
           } else {
             alert(res.message);
           }
